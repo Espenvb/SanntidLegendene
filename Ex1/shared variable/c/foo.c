@@ -6,11 +6,16 @@
 
 int i = 0;
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+
 // Note the return type: void*
 void *incrementingThreadFunction(void *arg ){
     // TODO: increment i 1_000_000 times
-    for(int a = 0; a < 1000000; a++){
+    for(int a = 0; a < 100000; a++){
+        pthread_mutex_unlock(&mutex);
         i++;
+        pthread_mutex_lock(&mutex);
     }
     
     return NULL;
@@ -18,8 +23,10 @@ void *incrementingThreadFunction(void *arg ){
 
 void* decrementingThreadFunction(void *arg){
     // TODO: decrement i 1_000_000 times
-    for(int a = 0; a < 1000000; a++){
+    for(int a = 0; a < 1; a++){
+        pthread_mutex_unlock(&mutex);
         i--;
+        pthread_mutex_lock(&mutex);
     }
     return NULL;
 }
@@ -37,17 +44,17 @@ int main(){
         return 1;
     }
 
-    if (pthread_join(threadInc, NULL) != 0) {
-        perror("pthread_create() error");
-        return 1;
-    }
-
     if(pthread_create(&threadDec, NULL, decrementingThreadFunction, NULL) != 0){
         perror("pthread_create() error");
         return 1;
     }
 
     if (pthread_join(threadDec, NULL) != 0) {
+        perror("pthread_create() error");
+        return 1;
+    }
+
+    if (pthread_join(threadInc, NULL) != 0) {
         perror("pthread_create() error");
         return 1;
     }
