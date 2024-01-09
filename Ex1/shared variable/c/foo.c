@@ -31,7 +31,7 @@ int main(){
     // Hint: search the web! Maybe try "pthread_create example"?
     pthread_t threadInc;
     pthread_t threadDec;
-    void *ret;
+    
     if(pthread_create(&threadInc, NULL, incrementingThreadFunction, NULL) != 0){
         perror("pthread_create() error");
         return 1;
