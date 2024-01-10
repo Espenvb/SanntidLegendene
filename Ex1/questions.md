@@ -33,12 +33,14 @@ Some languages support "fibers" (sometimes called "green threads") or "coroutine
 > *Your answer here*
 
 Does creating concurrent programs make the programmer's life easier? Harder? Maybe both?
-> *Your answer here*
+> ytelsen kan bli bedre. istedefor å kjøre ting i serie, kan det gjøres mer parallelt. Problemet er at du må behandle forskjellige threads, og passe på ting som for eksemepel race conditions. 
 
 ytelsen kan bli bedre. istedefor å kjøre ting i serie, kan det gjøres mer parallelt. Problemet er at du må behandle forskjellige threads, og passe på ting som for eksemepel race conditions.
 
 What do you think is best - *shared variables* or *message passing*?
-> *Your answer here*
+> shared variables er lettere å implementere, men man kan få synkronisasjons problemer.
+> unngår en del synkronisasjons problemer ved at messages behandles og handles på om det er mulig.
+> kan være vanskeligere å implementere?
 
 shared variables er lettere å implementere, men man kan få synkronisasjons problemer. unngår en del synkronisasjons problemer ved at messages behandles og handles på om det er mulig. kan være vanskeligere å implementere?
 
