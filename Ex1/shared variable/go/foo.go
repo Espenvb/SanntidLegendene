@@ -5,37 +5,34 @@ package main
 import (
     . "fmt"
     "runtime"
-    "time"
 )
 
-var i = 0
-
-func server(increment chan int, quitInc chan int, decrement chan int, quitDec chan int){
+func server(increment chan int, read chan int, decrement chan int){
+    var i = 0
     for {
         select{
         case <- increment:
             i++
         case <- decrement:
             i--
-        case <- quitDec:
-            return
-        }
-    }
+        case read <- i:
 
+    }
+}
 }
 
-func incrementing(increment chan int, quitInc chan int) {
-    for a := 0; a < 1000; a++{
+func incrementing(increment chan int, quit chan int) {
+    for a := 0; a <= 1000; a++{
         increment <- 1
     }
-    quitInc <- 1
+    quit <- 1
 }
 
-func decrementing(decrement chan int, quitDec chan int) {
-    for a := 0; a < 10; a++{
+func decrementing(decrement chan int, quit chan int) {
+    for a := 0; a <= 10; a++{
         decrement <- 1
     }
-    quitDec <- 1
+    quit <- 1
 }
 
 
@@ -45,22 +42,28 @@ func main() {
 	
     increment := make(chan int)
     decrement := make(chan int)
-    quitInc := make(chan int)
-    quitDec := make(chan int)
+    quit := make(chan int)
+    read := make(chan int)
+
 
 
 
     // TODO: Spawn both functions as goroutines
-    go incrementing(increment, quitInc)
-    go decrementing(decrement, quitDec)
-    go server(increment, quitInc, decrement, quitDec)
+    go incrementing(increment, quit)
+    go decrementing(decrement, quit)
+    go server(increment, read, decrement)
 
+    <- quit
+    <- quit
+    
+    Println(<-read)
 
+    return
 
     
 	
     // We have no direct way to wait for the completion of a goroutine (without additional synchronization of some sort)
     // We will do it properly with channels soon. For now: Sleep.
-    time.Sleep(500*time.Millisecond)
-    Println("The magic number is:", i)
+    //time.Sleep(500*time.Millisecond)
+    
 }
