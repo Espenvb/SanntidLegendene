@@ -20,7 +20,7 @@ Data race: Very similar to race condition, two or more threads accses a shared r
  
 *Very* roughly - what does a *scheduler* do, and how does it do it?
 > *Your answer here* 
-A scheduler 
+A scheduler decides what procesces to run. It does this by using algorithms and switching between the processes. 
 
 
 ### Engineering
@@ -32,15 +32,14 @@ Threads are good since they can solve problems faster and is can run different t
 Some languages support "fibers" (sometimes called "green threads") or "coroutines"? What are they, and why would we rather use them over threads?
 > *Your answer here*
 
+A more light weight form of thread. Can be used to divide a thread into several tasks. 
+
 Does creating concurrent programs make the programmer's life easier? Harder? Maybe both?
 > ytelsen kan bli bedre. istedefor å kjøre ting i serie, kan det gjøres mer parallelt. Problemet er at du må behandle forskjellige threads, og passe på ting som for eksemepel race conditions. 
-
-ytelsen kan bli bedre. istedefor å kjøre ting i serie, kan det gjøres mer parallelt. Problemet er at du må behandle forskjellige threads, og passe på ting som for eksemepel race conditions.
 
 What do you think is best - *shared variables* or *message passing*?
 > shared variables er lettere å implementere, men man kan få synkronisasjons problemer.
 > unngår en del synkronisasjons problemer ved at messages behandles og handles på om det er mulig.
 > kan være vanskeligere å implementere?
 
-shared variables er lettere å implementere, men man kan få synkronisasjons problemer. unngår en del synkronisasjons problemer ved at messages behandles og handles på om det er mulig. kan være vanskeligere å implementere?
 
