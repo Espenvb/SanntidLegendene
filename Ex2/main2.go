@@ -26,16 +26,17 @@ func getIP(){
 	buffer := make([]byte,1024)
 
 	n, _, err := conn.ReadFromUDP(buffer)
-	if err!=nil {t
+	if err!=nil {
+		log.Fatal(err)
 	}
 
 	message := string(buffer[:n])
 	fmt.Printf("melding:", message)
 }
 
-func sendmessage(*net.UDPAddr halla){
+func sendmessage(halla *net.UDPConn, udpaddr *net.UDPAddr){
 	svar := []byte("heihei")
-	_, err = halla.WriteToUDP(svar,udpaddr)
+	_, err := halla.WriteToUDP(svar,udpaddr)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,7 +44,7 @@ func sendmessage(*net.UDPAddr halla){
 }
 
 
-func readmessage(*net.UDPAddr halla){
+func readmessage(halla *net.UDPConn,udpaddr *net.UDPAddr ){
 	nybuffer := make([]byte,1024)
 	p, _, err := halla.ReadFromUDP(nybuffer)
 	if err!=nil {
@@ -72,10 +73,14 @@ addr2, err := net.ResolveUDPAddr("udp",fmt.Sprintf(":%d",serverPort))
 
 høre, err := net.ListenUDP("udp", addr2)	
 
+if err != nil{
+	log.Fatal(err)
+}
+
 
 getIP()
-sendmessage(høre)
-readmessage(høre)
+sendmessage(høre, udpaddr)
+readmessage(høre, udpaddr)
 
 
 	
