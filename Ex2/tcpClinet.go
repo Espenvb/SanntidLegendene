@@ -1,40 +1,75 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
-	"fmt"
 )
 
 //portDel := "33546"
 
 
-func main(){
-	addr, err := net.ResolveTCPAddr("tcp", "10.100.23.129:34933")
-	if err!=nil {
-		log.Fatal(err)
-	}
+func connecting(conn net.Conn){
+	defer conn.Close()
 
-	conn, err := net.ListenTCP("tcp", addr)
-	if err!=nil {
+	fmt.Println("accepted")
+
+	melding := "velkommen"
+	conn.Write([]byte(melding))
+
+}
+
+
+
+func main() {
+
+	conn, err := net.Dial("tcp", "10.100.23.129:33546")
+	if err != nil {
 		log.Fatal(err)
 	}
 
 	defer conn.Close()
 
-	buffer := make([]byte, 1024)
+	
 
-	n, _, err := conn.Read
-	if err!=nil {
+	sendbuffer := append([]byte("Connect to: 10.100.23.20:33546"), 0)
+	_, err1 := conn.Write(sendbuffer)
+	if err1 != nil {
 		log.Fatal(err)
 	}
 
-	message := string(buffer[:n])
-	fmt.Printf("melding:", message)
+	
 
+		listen,err := net.Listen("tcp", fmt.Sprintf(":%d",33546))
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer listen.Close()
+
+		for{
+			conn2, err := listen.Accept()
+			if err!=nil{
+				log.Fatal(err)
+			}
+		
+		
+	go connecting(conn2)
+
+		}
+	
+
+
+		
+	/*	n, err := conn.Read(buffer)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		message := string(buffer[:n])
+		fmt.Printf("Message : %s\n", message)
+*/
 
 	
+
+
 }
-
-
-
