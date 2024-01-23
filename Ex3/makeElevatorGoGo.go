@@ -1,16 +1,17 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"log"
 	"net"
 )
 
 //portDel := "33546"
 
-
+/*
 func connecting(conn net.Conn){
 	defer conn.Close()
+
 
 	fmt.Println("accepted")
 
@@ -18,54 +19,47 @@ func connecting(conn net.Conn){
 	conn.Write([]byte(melding))
 
 }
-
+*/
 
 
 func main() {
 
-	conn, err := net.Diapackage main
-
-	import (
-		"fmt"
-		"log"
-		"net"
-	)
-	
-	func sendmessage(halla *net.UDPConn, udpaddr *net.UDPAddr) {
-		svar := []byte("heihei")
-		_, err := halla.WriteToUDP(svar, udpaddr)
-		if err != nil {
-			log.Fatal(err)
-		}
-	func main() {
-		serverPort := 20010
-	
-		udpaddr := &net.UDPAddr{
-			IP:   net.ParseIP("10.100.23.129"),
-			Port: 20010,
-		}
-	
-		addr2, err := net.ResolveUDPAddr("udp", fmt.Sprintf(":%d", serverPort))
-	
-		høre, err := net.ListenUDP("udp", addr2)
-	
-		if err != nil {
-			log.Fatal(err)
-		}
-	
-		getIP()
-		sendmessage(høre, udpaddr)
-		readmessage(høre, udpaddr)
-	
-	}
-	
+	conn, err := net.Dial("tcp", "localhost:15657")
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	defer conn.Close()
 
-	
+	message := make([]byte,4)
+	message[0] = 0x01
+	message[1] = 0x01
+	message[2] = 0x01
+	message[3] = 0x81
 
-	sendbuffer := append([]byte("Connect to: 10.100.23.20:33546"), 0)
+
+	
+	_, err = conn.Write(message)
+
+
+	/*buffer := make([]byte,1024)
+	n, err := conn.Read(buffer)
+	if err != nil{
+		log.Fatal(err)
+	}
+
+	fmt.Println(buffer[:n])
+*/
+	}
+
+
+
+
+
+
+	
+/*
+	sendbuffer := append([]byte(""), 0)
 	_, err1 := conn.Write(sendbuffer)
 	if err1 != nil {
 		log.Fatal(err)
@@ -83,9 +77,13 @@ func main() {
 			conn2, err := listen.Accept()
 			if err!=nil{
 				log.Fatal(err)
-			}
-		
-		
+		    
+    ret, err := exec.Command("../hall_request_assigner/"+hraExecutable, "-i", string(jsonBytes)).CombinedOutput()
+    if err != nil {
+        fmt.Println("exec.Command error: ", err)
+        fmt.Println(string(ret))
+        return
+    }
 	go connecting(conn2)
 
 		}
@@ -105,4 +103,3 @@ func main() {
 	
 
 
-}

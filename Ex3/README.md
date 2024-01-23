@@ -45,7 +45,7 @@ Download the driver (for the programming language you are doing the project in) 
    - In order to run multiple simulators on the same computer (or a simulator and a real elevator), you will have to change the port on both the simulator (with `--port`) and in the driver (likely in a call to some init-function or in a config file)
    
 If you want to use the real elevator with your own machine, you will need a USB-B cable, and the elevator server executable (https://github.com/TTK4145/elevator-server/releases/latest) (OSX is not supported, as this is not implemented yet).
-
+//"fmt"
 
 ### Up and away
 
@@ -122,3 +122,4 @@ Some hints:
  - Be aware of what is the least clear (or most hand-wave-y) part, and ask for ideas and inspiration for it.
 
 
+//"fmt"
