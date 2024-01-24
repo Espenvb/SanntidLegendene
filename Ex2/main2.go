@@ -48,7 +48,7 @@ func readmessage(halla *net.UDPConn, udpaddr *net.UDPAddr) {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("svar:", string(nybuffer[:p]))
+	fmt.Println("svar:", string(nybuffer[:p]))
 
 }
 
@@ -56,7 +56,7 @@ func main() {
 	serverPort := 20010
 
 	udpaddr := &net.UDPAddr{
-		IP:   net.ParseIP("10.100.23.129"),
+		IP:   net.ParseIP("10.100.23.186"),
 		Port: 20010,
 	}
 
@@ -68,7 +68,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	getIP()
+	//getIP()
 	sendmessage(høre, udpaddr)
 	readmessage(høre, udpaddr)
 

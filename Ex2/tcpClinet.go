@@ -23,7 +23,7 @@ func connecting(conn net.Conn){
 
 func main() {
 
-	conn, err := net.Dial("tcp", "10.100.23.129:33546")
+	conn, err := net.Dial("tcp", "10.100.23.186:33546")
 	if err != nil {
 		log.Fatal(err)
 	}
