@@ -40,6 +40,7 @@ type ButtonEvent struct {
 
 
 
+
 func Init(addr string, numFloors int) {
 	if _initialized {
 		fmt.Println("Driver already initialized!")
@@ -219,4 +220,11 @@ func GoOrder(a ButtonEvent,d MotorDirection)(floor int){
 			SetMotorDirection(d)
 			return floor
 
+}
+
+
+func DoorOpenAndClose(){
+	SetDoorOpenLamp(true)
+	time.Sleep(3000*time.Millisecond)
+	SetDoorOpenLamp(bool(false))
 }

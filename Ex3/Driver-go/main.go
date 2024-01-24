@@ -4,16 +4,23 @@ import "Driver-go/elevio"
 import "fmt"
 
 
+
+
+
 var d elevio.MotorDirection = elevio.MD_Up
 var floor int
 //var floor int
 
+
+
 func main() {
+
+	
 
 	numFloors := 4
 
 	elevio.Init("localhost:15657", numFloors)
-
+	//Elevator1 := elevio.Initilize_elevator(d)
 	
 	//elevio.SetMotorDirection(d)
 
@@ -56,6 +63,9 @@ func main() {
 				fmt.Printf("You have arrived stop")
 				d = elevio.MD_Stop
 				elevio.SetMotorDirection(d)
+				elevio.SetFloorIndicator(a)
+				elevio.DoorOpenAndClose()
+
 			}
 			fmt.Println(elevio.GetFloor())
 		}
