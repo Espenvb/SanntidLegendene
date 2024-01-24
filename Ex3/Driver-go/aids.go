@@ -3,7 +3,7 @@ package main
 import "Driver-go/elevio"
 import "fmt"
 
-func main(){
+func main2(){
 
     numFloors := 4
 
