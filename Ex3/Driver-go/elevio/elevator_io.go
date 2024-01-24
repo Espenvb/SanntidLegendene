@@ -1,9 +1,12 @@
 package elevio
 
-import "time"
-import "sync"
-import "net"
-import "fmt"
+import (
+	
+	"fmt"
+	"net"
+	"sync"
+	"time"
+)
 
 
 
@@ -196,4 +199,24 @@ func toBool(a byte) bool {
 		b = true
 	}
 	return b
+}
+
+
+func GoOrder(a ButtonEvent,d MotorDirection)(floor int){
+	fmt.Printf("Detecten button pressed")
+			SetButtonLamp(a.Button, a.Floor, true)
+			if GetFloor() < a.Floor {
+				//Go up
+				fmt.Printf("Going up")
+				d = MD_Up
+				floor = a.Floor
+			} else if GetFloor() > a.Floor {
+				//Go down
+				fmt.Printf(("Going down"))
+				d = MD_Down
+				floor = a.Floor
+			}
+			SetMotorDirection(d)
+			return floor
+
 }

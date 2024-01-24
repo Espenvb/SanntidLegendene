@@ -32,7 +32,8 @@ func main() {
 		select {
 		
 		case a := <-drv_buttons:
-			fmt.Printf("Detecten button pressed")
+			floor = elevio.GoOrder(a,d)
+			/*fmt.Printf("Detecten button pressed")
 			elevio.SetButtonLamp(a.Button, a.Floor, true)
 			if elevio.GetFloor() < a.Floor {
 				//Go up
@@ -46,6 +47,7 @@ func main() {
 				floor = a.Floor
 			}
 			elevio.SetMotorDirection(d)
+			*/
 		
 		case a := <-drv_floors:
 			fmt.Printf("Detected change in flooor")
