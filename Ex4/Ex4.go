@@ -26,10 +26,29 @@ func send(addr string,conn *net.UDPConn){
 }
 
 
+func count(){
+	for{
+		Value++
+	}
+}
+
+func send(conn *net.UDPConn,  udpaddr *net.UDPAddr){
+	svar := []byte(Value)
+	_, err := conn.WriteToUDP(svar, )
+}
+
+func master (){
+	count()
+	//send
+
+}
+
+
+
 
 
 func main(){
-
+	Value int := 0
 	broadcastaddr := "255.255.255.255"
 	port := 12345
 
@@ -46,10 +65,7 @@ func main(){
 	defer conn.Close()
 	}
 
-
-
-for{
-
-}
+go master
+go slave
 
 }

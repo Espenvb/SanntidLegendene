@@ -47,6 +47,7 @@ func main() {
 	Counter := InitializeCounter(Slave)
 	for {
 		switch Counter.State {
+			
 		case Slave:
 			// Do slave stuff
 			// Listen and stuff
