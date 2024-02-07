@@ -1,9 +1,14 @@
 package main
 
-import{
+import(
 
 	"net"
-}
+	"fmt"
+	"os"
+	"os/exec"
+	"time"
+	"math/rand"
+)
 
 type CounterManager struct{
 	//send message to slave
@@ -31,6 +36,7 @@ func sendToSlave(s *CounterManager,halla *net.UDPConn, udpaddr *net.UDPAddr){
 	}
 }
 
+
 func countNumber(s *CounterManager){
 	s.counter++
 }
@@ -45,10 +51,34 @@ func Initilize_counter(FsmState) CounterManager{
 }
 
 
+func start_node() *exec.Cmd {
+	//Starts a new node
+	fmt.Println("Starting new node")
+
+	cmd := exec.Command("cmd", "/C", "start", "powershell", "go", "run", "MasterCounter.go")
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return cmd
+	}
+	fmt.Println("Created new node")
+	return cmd
+}
+
+func kill_self(){
+	//Kills itself after a random amount of time
+	minTime := 4
+	//rand.Seed(time.Now().UnixNano())
+	randTime := time.Duration((minTime + rand.Intn(5)))*time.Second
+	time.Sleep((randTime))
+	os.Exit(0)
+}
+
+
 func main(){
 	//initialize counter
 	
-
+	
 	CounterManager1:= Initilize_counter(Master)
 	CounterSlave := Initilize_counter(Slave)
 
