@@ -95,6 +95,7 @@ func main(){
 		CounterManager1.countNumber()
 		CounterManager1.sendToSlave()
 	}
+	//Masse nye ting
 }
 
 
