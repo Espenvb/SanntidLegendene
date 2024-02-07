@@ -19,7 +19,8 @@ func listen(port int) {
     fmt.Println("Listening for broadcasts...")
 
     // Continuously listen for incoming UDP packets
-    for {
+    deadline := time.Now().Add(n * time.Second)
+    for time.Now().Before(deadline) {
         buffer := make([]byte, 1024)
         n, _, _ := conn.ReadFromUDP(buffer)
         fmt.Printf("Received broadcast: %s\n", string(buffer[:n]))
