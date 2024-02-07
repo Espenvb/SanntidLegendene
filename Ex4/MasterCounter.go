@@ -41,23 +41,42 @@ func countNumber(s *CounterManager){
 	s.counter++
 }
 
-func InitializeCounter(state FsmState) CounterManager {
-	CounterManager1 := CounterManager{
+func Initilize_counter(FsmState) CounterManager{
+	CounterManager1:= CounterManager{
 		counter: 0,
-		State:   state,
+		state: FsmState(1),
+
 	}
 	return CounterManager1
 }
 
-func main() {
-	//Create Slave
-	Counter := InitializeCounter(Slave)
-	for {
-		switch Counter.State {
-		case Slave:
-			// Do slave stuff
-			// Listen and stuff
-		case Master:
-		}
+
+func start_node() *exec.Cmd {
+	//Starts a new node
+	fmt.Println("Starting new node")
+
+	cmd := exec.Command("cmd", "/C", "start", "powershell", "go", "run", "MasterCounter.go")
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println("Error:", err)
+		return cmd
 	}
+	fmt.Println("Created new node")
+	return cmd
 }
+
+func kill_self(){
+	//Kills itself after a random amount of time
+	minTime := 4
+	//rand.Seed(time.Now().UnixNano())
+	randTime := time.Duration((minTime + rand.Intn(5)))*time.Second
+	time.Sleep((randTime))
+	os.Exit(0)
+}
+
+func main(){
+
+}
+
+
+//Become master
