@@ -1,27 +1,33 @@
 package main
 
-import (
-	"log"
+import(
+
 	"net"
+	"fmt"
+	"os"
+	"os/exec"
+	"time"
+	"math/rand"
 )
 
-type CounterManager struct {
+type CounterManager struct{
 	//send message to slave
 	counter int
-
+	
+	
 	//count
 	//state machine
 	State FsmState
 }
 
-type FsmState int
+type FsmState int 
+	const (
+		Slave FsmState = 0
+		Master = 1
+	)
 
-const (
-	Slave  FsmState = 0
-	Master FsmState = 1
-)
 
-func (s *CounterManager) sendToSlave(halla *net.UDPConn, udpaddr *net.UDPAddr) {
+func sendToSlave(s *CounterManager,halla *net.UDPConn, udpaddr *net.UDPAddr){
 	//send message to slave
 	svar := []byte("heihei")
 	_, err := halla.WriteToUDP(svar, udpaddr)
@@ -30,7 +36,8 @@ func (s *CounterManager) sendToSlave(halla *net.UDPConn, udpaddr *net.UDPAddr) {
 	}
 }
 
-func (s *CounterManager) countNumber() {
+
+func countNumber(s *CounterManager){
 	s.counter++
 }
 
@@ -47,14 +54,10 @@ func main() {
 	Counter := InitializeCounter(Slave)
 	for {
 		switch Counter.State {
-			
 		case Slave:
 			// Do slave stuff
 			// Listen and stuff
 		case Master:
-			// Do master stuff
-			Counter.sendToSlave(nil, nil) // Provide appropriate parameters
-			Counter.countNumber()
 		}
 	}
 }
