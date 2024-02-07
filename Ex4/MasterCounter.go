@@ -1,24 +1,13 @@
 package main
 
 import(
-
 	"net"
-	"fmt"
-	"os"
-	"os/exec"
+	"log"
 	"time"
-	"math/rand"
+	"fmt"
 )
 
-type CounterManager struct{
-	//send message to slave
-	counter int
-	
-	
-	//count
-	//state machine
-	State FsmState
-}
+
 
 type FsmState int 
 	const (
@@ -49,15 +38,59 @@ func InitializeCounter(state FsmState) CounterManager {
 	return CounterManager1
 }
 
-func main() {
-	//Create Slave
-	Counter := InitializeCounter(Slave)
+func slave(conn *net.UDPConn, msgReceived chan bool){
+	//readStuff
+	lastReceived := time.Now()
+
 	for {
-		switch Counter.State {
-		case Slave:
-			// Do slave stuff
-			// Listen and stuff
-		case Master:
+		select {
+		case <-time.After(1 * time.Second):
+			elapsed := time.Since(lastReceived)
+			if elapsed >= 1*time.Second {
+				fmt.Println("Timeout expired, no message received in 1 second.")
+			}
+		case <-msgReceived:
+			lastReceived = time.Now()
+			fmt.Println("Message received, resetting timer.")
 		}
 	}
+}
+
+func main() {
+
+	Crash := make(chan int)
+	received := make(chan int)
+
+	//Setup UDP
+	// Create a UDP listener
+	addr, err := net.ResolveUDPAddr("udp", "127.0.0.1:12345")
+	if err != nil {
+		fmt.Println("Error resolving UDP address:", err)
+		return
+	}
+	conn, err := net.ListenUDP("udp", addr)
+	if err != nil {
+		fmt.Println("Error listening:", err)
+		return
+	}
+	defer conn.Close()
+
+
+	select{
+
+	case a <- Crash:
+		//gjør til master og lag ny
+	
+	case a <- received:
+		//oppdater verdi
+
+	case a <- counter:
+		// send funksjon
+
+	case a <- 
+	}
+
+
+
+
 }
