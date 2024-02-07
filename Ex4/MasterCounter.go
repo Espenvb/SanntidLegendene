@@ -30,67 +30,24 @@ func countNumber(s *CounterManager){
 	s.counter++
 }
 
-func InitializeCounter(state FsmState) CounterManager {
-	CounterManager1 := CounterManager{
+func Initilize_counter(FsmState) CounterManager{
+	CounterManager1:= CounterManager{
 		counter: 0,
-		State:   state,
+		state: FsmState(1),
+
 	}
 	return CounterManager1
 }
 
-func slave(conn *net.UDPConn, msgReceived chan bool){
-	//readStuff
-	lastReceived := time.Now()
-
+func main() {
+	//Create Slave
+	Counter := InitializeCounter(Slave)
 	for {
-		select {
-		case <-time.After(1 * time.Second):
-			elapsed := time.Since(lastReceived)
-			if elapsed >= 1*time.Second {
-				fmt.Println("Timeout expired, no message received in 1 second.")
-			}
-		case <-msgReceived:
-			lastReceived = time.Now()
-			fmt.Println("Message received, resetting timer.")
+		switch Counter.State {
+		case Slave:
+			// Do slave stuff
+			// Listen and stuff
+		case Master:
 		}
 	}
-}
-
-func main() {
-
-	Crash := make(chan int)
-	received := make(chan int)
-
-	//Setup UDP
-	// Create a UDP listener
-	addr, err := net.ResolveUDPAddr("udp", "127.0.0.1:12345")
-	if err != nil {
-		fmt.Println("Error resolving UDP address:", err)
-		return
-	}
-	conn, err := net.ListenUDP("udp", addr)
-	if err != nil {
-		fmt.Println("Error listening:", err)
-		return
-	}
-	defer conn.Close()
-
-
-	select{
-
-	case a <- Crash:
-		//gjør til master og lag ny
-	
-	case a <- received:
-		//oppdater verdi
-
-	case a <- counter:
-		// send funksjon
-
-	case a <- 
-	}
-
-
-
-
 }
