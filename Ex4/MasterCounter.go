@@ -1,28 +1,27 @@
 package main
 
-import{
-
+import (
+	"log"
 	"net"
-}
+)
 
-type CounterManager struct{
+type CounterManager struct {
 	//send message to slave
 	counter int
-	
-	
+
 	//count
 	//state machine
 	State FsmState
 }
 
-type FsmState int 
-	const (
-		Slave FsmState = 0
-		Master = 1
-	)
+type FsmState int
 
+const (
+	Slave  FsmState = 0
+	Master FsmState = 1
+)
 
-func sendToSlave(s *CounterManager,halla *net.UDPConn, udpaddr *net.UDPAddr){
+func (s *CounterManager) sendToSlave(halla *net.UDPConn, udpaddr *net.UDPAddr) {
 	//send message to slave
 	svar := []byte("heihei")
 	_, err := halla.WriteToUDP(svar, udpaddr)
@@ -31,41 +30,30 @@ func sendToSlave(s *CounterManager,halla *net.UDPConn, udpaddr *net.UDPAddr){
 	}
 }
 
-func countNumber(s *CounterManager){
+func (s *CounterManager) countNumber() {
 	s.counter++
 }
 
-func Initilize_counter(FsmState) CounterManager{
-	CounterManager1:= CounterManager{
+func InitializeCounter(state FsmState) CounterManager {
+	CounterManager1 := CounterManager{
 		counter: 0,
-		state: FsmState(1),
-
+		State:   state,
 	}
 	return CounterManager1
 }
 
-
-func main(){
-	//initialize counter
-	
-
-	CounterManager1:= Initilize_counter(Master)
-	CounterSlave := Initilize_counter(Slave)
-
-	go doMasterStuff(){
-		
-		CounterManager1.countNumber()
-		CounterManager1.sendToSlave()
-	}
-	for{
-		select
-			CounterManager.FsmState == 1
-				//Do master shit
-
-		CounterManager1.countNumber()
-		CounterManager1.sendToSlave()
+func main() {
+	//Create Slave
+	Counter := InitializeCounter(Slave)
+	for {
+		switch Counter.State {
+		case Slave:
+			// Do slave stuff
+			// Listen and stuff
+		case Master:
+			// Do master stuff
+			Counter.sendToSlave(nil, nil) // Provide appropriate parameters
+			Counter.countNumber()
+		}
 	}
 }
-
-
-//Become master
