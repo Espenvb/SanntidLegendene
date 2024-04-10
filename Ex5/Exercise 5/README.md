@@ -230,6 +230,8 @@ resource := Resource{}
 for {
     select {
     case takeHigh<- resource:
+    default:
+      se
         fmt.Printf("[resource manager]: resource taken (high)\n")
     case takeLow<- resource:
         fmt.Printf("[resource manager]: resource taken (low)\n")

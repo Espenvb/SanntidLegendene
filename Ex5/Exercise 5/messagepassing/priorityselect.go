@@ -1,4 +1,4 @@
-package main
+/*package main
 
 import "fmt"
 import "time"
@@ -28,7 +28,7 @@ Hints:
    But you might find it useful when experimenting...
  - `select` can have a `default` case. 
  - You will need to completely restructure the existing code, not just extend it
-*/
+
 
 type Resource struct {
     value []int // Resource type is []int. Each user appends its own id when executing.
@@ -41,13 +41,17 @@ func resourceManager(takeLow chan Resource, takeHigh chan Resource, giveBack cha
     
     for {
         select {
-        case takeHigh<- res:
-            //fmt.Printf("[resource manager]: resource taken (high)\n")
-        case takeLow<- res:
-            //fmt.Printf("[resource manager]: resource taken (low)\n")
-        case res = <-giveBack:
+        case takeHigh <- res:
+        default:
+            select{
+            case takeHigh <- res:
+            
+            case takeLow <- res:
+            }
+        
             //fmt.Printf("[resource manager]: resource returned\n")
         }
+    res = <- giveBack
     }
 }
     
@@ -172,3 +176,4 @@ func executionLogger(){
         time.Sleep(tick)
     }
 }
+/*
