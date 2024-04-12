@@ -11,3 +11,29 @@ Informasjonen flyter som oftest fra en module til neste som gjør det nokså let
 a66a5e3d
 
 
+
+
+
+afb6781
+9
+generelt:
+legg parametere under hverandre istedenfor bort over i funskjonsnavn, slik at man slipper å scrolle bortover.
+gjeren ha med piler i parametere med channels slik at det er lettere å se hva som går inn og ut av funksjonen.
+Veldig ryddig. har iskke noe problem med å finne frem til det jeg trenger. Lett å lese og generelt gode navn.
+Usikker på om filen statemechines.go burde endret navn, og kanskje cabstatemachine inne i denne filen.
+Tror denne gruppen fint kunne lagt til flere funskjoner uten store problemer, og jeg tror andre kunne uten store problemer satt-
+seg inn i koden for å bidra.
+Assigner:
+costfunc?? navn
+bra navn ellers. Greit å forstå hva funksjoner gjør.
+config:
+Ryddig og relativt bra navn på typer
+FSM:
+ryddig. bra navn på cases. Lett å lese cases så det er lett å forstå system designet¨
+Utilities:
+Ryddig.
+I clearrequestAtFloor er det to vaiabler kallt topfloor og bottomfloor. Disse kunne kanskje vært hentet fra en const variabel eller noe fra et annet sted
+så det er mer modulerbart.
+
+
+
