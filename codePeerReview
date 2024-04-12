@@ -1,18 +1,22 @@
 b3bd6d5b
 8
-Main funksjonen deres er tydlig og det er lett å se at det er en master slave topologi og lett å se hvilke funksjoner som er koblet sammen via channels. 
-Når man går inn i funksjonene så er det ofte litt vanskelig å vite hva som er inputs og outputs av funksjonene da det ikke er brukt piler for å indikere dette. 
-Noen av channel navnene kunne vært forbredet slik det er enda tydligere hva disse gjør og om de fungerer som input eller outputs. toRoleFSMCh blir sendt til RoleFSM men også til DistributeMessages som er litt utydlig fra navnet til channelen. 
-Er også noen av funksjons navnene som kunne vært enda tydligere hva de gjør. Er ikke alltid helt klart hva funksjonen gjør og har ansvar for utifra navnet. 
-Er noen funksjoner som endrer på inputs channelene inne i funksjonen dette gjør at koden blir litt mer tungvin å lese. 
-Funksjonene på innsiden er ofte godt skrevet og det er ofte enkelt å skjønne hva funksjonen gjør når man leser på innmaten til funksjonen.
-Informasjonen flyter som oftest fra en module til neste som gjør det nokså lett å følge med på informasjonsflyten.
+1 Main funksjonen deres er tydlig og det er lett å se at det er en master slave topologi og lett å se hvilke funksjoner som er koblet sammen via channels. 
+2 Når man går inn i funksjonene så er det ofte litt vanskelig å vite hva som er inputs og outputs av funksjonene da det ikke er brukt piler for å indikere dette. 
+3 Noen av channel navnene kunne vært forbredet slik det er enda tydligere hva disse gjør og om de fungerer som input eller outputs. toRoleFSMCh blir sendt til RoleFSM men også til DistributeMessages som er litt utydlig fra navnet til channelen. 
+4 Er også noen av funksjons navnene som kunne vært enda tydligere hva de gjør. Er ikke alltid helt klart hva funksjonen gjør og har ansvar for utifra navnet. 
+5 Er noen funksjoner som endrer på inputs channelene inne i funksjonen dette gjør at koden blir litt mer tungvin å lese. 
+6 Funksjonene på innsiden er ofte godt skrevet og det er ofte enkelt å skjønne hva funksjonen gjør når man leser på innmaten til funksjonen.
+7 Informasjonen flyter som oftest fra en module til neste som gjør det nokså lett å følge med på informasjonsflyten.
 
 a66a5e3d
-
-
-
-
+6
+1 Main filen deres er litt vanskelig å forstå. Det er en god del channels som blir definert som globalevariabler før de blir sendt inn i funksjoner hvor channelene kunne hatt tydligere navn på hva de gjør og har ansvar for. Dette gjelder også en del funksjoner i main filen. Som konsekvens av dette blir det vanskelig å forstå hvordan ulike moduler samhandler og er avhengig av hverandre.
+2 Det er en del funksjoner som er vanskelig å forstå hva gjør og hva de har ansvar for. Funksjonen TransmitterUnicast tar inn 7 channels som input i main, men inni funksjonen er inputsa primaryChangeChan og channels ...interface{}, dette gjør det vanskelig å skjønne hva som skjer inni funksjonen fra utsiden.
+3 Funksjoners input og output er enkelt å følge med på da det er brukt piler for å indikere dette.
+4 Er en del funksjoner som gjør litt mye. Eks funksjonen PrimaryService tar inn 8 input channels og har 5 outputs. Blir derfor litt vanskelig å holde styr på hva funksjonen faktisk gjør og hva den har ansvar for. 
+5 Det er en del kommentarer som kunne fjernes. Det er mange funksjoner som har blitt kommentert ut slik at de ikke kjører. I tillegg til at det er den del kommentarer som indikerer ting som burde forbredes via TODO kommentarer.
+6 Er noen funksjoers innhold som er litt vanskelig å forstå da funksjonen enten gjør veldig mye eller det er brukt interface{} som channel input. 
+7 Det er også vanskelig å holde kontroll på informasjonsflyten. 
 
 afb6781
 9
