@@ -20,24 +20,25 @@ a66a5e3d
 
 afb6781
 9
-generelt:
-legg parametere under hverandre istedenfor bort over i funskjonsnavn, slik at man slipper å scrolle bortover.
-gjeren ha med piler i parametere med channels slik at det er lettere å se hva som går inn og ut av funksjonen.
-Veldig ryddig. har iskke noe problem med å finne frem til det jeg trenger. Lett å lese og generelt gode navn.
-Usikker på om filen statemechines.go burde endret navn, og kanskje cabstatemachine inne i denne filen.
-Tror denne gruppen fint kunne lagt til flere funskjoner uten store problemer, og jeg tror andre kunne uten store problemer satt-
+
+1 legg parametere under hverandre istedenfor bort over i funskjonsnavn, slik at man slipper å scrolle bortover.
+2 gjerne ha med piler i parametere med channels slik at det er lettere å se hva som går inn og ut av funksjonen.
+Veldig ryddig. har ikke noe problem med å finne frem til det jeg trenger. Lett å lese og generelt gode navn.
+3 Usikker på om filen statemechines.go burde endret navn, og kanskje cabstatemachine inne i denne filen.
+4 Tror denne gruppen fint kunne lagt til flere funskjoner uten store problemer, og jeg tror andre kunne, uten store problemer satt-
 seg inn i koden for å bidra.
-Assigner:
-costfunc?? navn
-bra navn ellers. Greit å forstå hva funksjoner gjør.
-config:
-Ryddig og relativt bra navn på typer
-FSM:
-ryddig. bra navn på cases. Lett å lese cases så det er lett å forstå system designet¨
-Utilities:
-Ryddig.
-I clearrequestAtFloor er det to vaiabler kallt topfloor og bottomfloor. Disse kunne kanskje vært hentet fra en const variabel eller noe fra et annet sted
+5 I clearrequestAtFloor er det to vaiabler kallt topfloor og bottomfloor. Disse kunne kanskje vært hentet fra en const variabel eller noe fra et annet sted
 så det er mer modulerbart.
 
+
+2CA6E23C:
+7
+1 En del av funksjonsnavnene gjør at du må inn i funksjonen for skjønne helt hva den gjør.
+2 Pakkene av channels er forsåvidt ryddig, men ved første øyekast virker det uryddig fordi man må sette seg inn i disse tli en viss grad. Det blir vankelig når det sendes informasjon på èn av channelsene i en pakke, men samlingen av channels går flere steder. Dette gjør at å følge for eksemepl et knappetrykk blir vanskeligere ettersom du ikke vet hvilken modul den går videre til fordi pakken brukes i flere moduler.
+3 kunne vært bedre navn på noen channels, somm ville gjort det lettere å skjønne hva som sendes på de og hvor.
+4 noen steg i dataflyten som er unødvendig. Buttonpress går til MainFSM for så å bare bli sendt videre. Gjør kanskje design prosessen ryddigere, men virker som om den kunne vært sendt rett dit den skulle. usikker på om det skjer flere steder.
+5 ikke alltid brukt samme navn på channels i funksjoner som der de er definert, noe som gjør det litt tungvindt å sjekke hvor de går. for eksempel blir UpdateWorldViewChannels kalt for kun updateChannels i MainFSM. Slik at når du leter etter updatechannels for å se hvor denne channelen går, må du finne den korresponderende channelen.
+6 Virker som WorldView gjør litt vel mye. Tror den kunne blitt splittet opp i hvertfall 2 moduler slik at det hadde vært lettere å se hva den nøyaktig gjør.
+7 Tror jeg måtte brukt litt tid på å sette meg inn i koden hvis jeg skulle lagt til flere features for eksempel. Klarer ikke så lett å se Main hvor jeg skal gå for å finne det jeg trenger
 
 
