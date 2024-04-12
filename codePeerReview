@@ -1,3 +1,13 @@
+ff30d4d9
+7 
+1 Er litt uklart hva som går inn og ut av funksjoner. Savner bruk av piler <- for å indikere hva som går inn og ut. 
+2Litt uklart hva cost betyr? Og dermed vanskelig å skjønne hva funksjonen costClearAtCurrent floor gjør. 
+3 Er også en del funksjoner som tar inn elevator som pointer som gjør at det er litt vanskelig å vite hvor denne endres. 
+4 distributeElevState blir også brukt mange plasser som gjør det litt uoversiktlig utenfra. 
+5 Linje 75-77 i main kan navn på funksjoner revurders.
+6 Usikker om det må være sånn p.g.a design valg men updateLights kunne vært flyttet ut av FsmServer.
+7 Oppbygning inni funksjonene er som regelt veldig bra. Er mer hva som går inn, ut og hvor som er utydelig.
+
 8fb8d77d
 8
 1 I main funksjonen er det noe utdylig hva noen channels gjør utifra navnet. F.eks hva er forskjellen på channelene isMasterCh1 og isMasterCh2?
@@ -7,16 +17,6 @@
 5 De fleste funksjoner er godt koda på innsiden som gjør det lett å forstå hva funksjonen gjør.
 6 Det er enkelt å følge med på informasjonsflyten. 
 7 Navnene til modulene og funksjonene er gode som gjør det lett å navigere seg igjennom koden 
-
-b3bd6d5b
-8
-1 Main funksjonen deres er tydlig og det er lett å se at det er en master slave topologi og lett å se hvilke funksjoner som er koblet sammen via channels. 
-2 Når man går inn i funksjonene så er det ofte litt vanskelig å vite hva som er inputs og outputs av funksjonene da det ikke er brukt piler for å indikere dette. 
-3 Noen av channel navnene kunne vært forbredet slik det er enda tydligere hva disse gjør og om de fungerer som input eller outputs. toRoleFSMCh blir sendt til RoleFSM men også til DistributeMessages som er litt utydlig fra navnet til channelen. 
-4 Er også noen av funksjons navnene som kunne vært enda tydligere hva de gjør. Er ikke alltid helt klart hva funksjonen gjør og har ansvar for utifra navnet. 
-5 Er noen funksjoner som endrer på inputs channelene inne i funksjonen dette gjør at koden blir litt mer tungvin å lese. 
-6 Funksjonene på innsiden er ofte godt skrevet og det er ofte enkelt å skjønne hva funksjonen gjør når man leser på innmaten til funksjonen.
-7 Informasjonen flyter som oftest fra en module til neste som gjør det nokså lett å følge med på informasjonsflyten.
 
 a66a5e3d
 6
@@ -30,7 +30,6 @@ a66a5e3d
 
 afb6781
 9
-
 1 legg parametere under hverandre istedenfor bort over i funskjonsnavn, slik at man slipper å scrolle bortover.
 2 gjerne ha med piler i parametere med channels slik at det er lettere å se hva som går inn og ut av funksjonen.
 Veldig ryddig. har ikke noe problem med å finne frem til det jeg trenger. Lett å lese og generelt gode navn.
