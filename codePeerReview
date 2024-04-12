@@ -1,3 +1,13 @@
+8fb8d77d
+8
+1 I main funksjonen er det noe utdylig hva noen channels gjør utifra navnet. F.eks hva er forskjellen på channelene isMasterCh1 og isMasterCh2?
+2 Funksjonene i main filen har gode navn som gjør det enkelt å skjønne topologien til systemet og hvilke funksjoner som samhandler og er avhenig av hverandre.
+3 En del av channelsene har tydlige navn som gjør det enkelt å skjønne hva som er inputs og ouputs av funksjonene.
+4 Er noen funksjoner som gjør litt mye f.eks ButtonsAndRequests funksjonen gjør har mange inputs og outputs som tyder på at funksjonen gjør for mye. Innholdet i koden er derimot bra skrevet og lett å lese. 
+5 De fleste funksjoner er godt koda på innsiden som gjør det lett å forstå hva funksjonen gjør.
+6 Det er enkelt å følge med på informasjonsflyten. 
+7 Navnene til modulene og funksjonene er gode som gjør det lett å navigere seg igjennom koden 
+
 b3bd6d5b
 8
 1 Main funksjonen deres er tydlig og det er lett å se at det er en master slave topologi og lett å se hvilke funksjoner som er koblet sammen via channels. 
