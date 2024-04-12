@@ -1,0 +1,20 @@
+"If every request has been backuped? Which problems remains to be solved?"
+
+No, you are right. You have understood the problem and you describe
+a solution. No more problems. As such. Just to make it work :-) Great
+work; go for it.
+
+A primary backup systems has some quite rigid demands; You /need/ to
+know who is the master, who is the backup, which elevators are in the
+system, that the backup has the same world view as the master etc.
+
+It is viable to build this on top of UDP or UDP broadcast,
+certainly. And what you write seems OK. Though I do not feel entirely
+safe that you have thought of everything.. But your direction is very good.
+
+The largest worry I have for you is that you are making a more
+complicated solution than necessary... "More backups than physical
+elevators" because "it is good for redundancy" scares me. Please be
+careful.
+-> valid resoning would be: easier to program
+
