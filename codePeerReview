@@ -1,0 +1,13 @@
+b3bd6d5b
+8
+Main funksjonen deres er tydlig og det er lett å se at det er en master slave topologi og lett å se hvilke funksjoner som er koblet sammen via channels. 
+Når man går inn i funksjonene så er det ofte litt vanskelig å vite hva som er inputs og outputs av funksjonene da det ikke er brukt piler for å indikere dette. 
+Noen av channel navnene kunne vært forbredet slik det er enda tydligere hva disse gjør og om de fungerer som input eller outputs. toRoleFSMCh blir sendt til RoleFSM men også til DistributeMessages som er litt utydlig fra navnet til channelen. 
+Er også noen av funksjons navnene som kunne vært enda tydligere hva de gjør. Er ikke alltid helt klart hva funksjonen gjør og har ansvar for utifra navnet. 
+Er noen funksjoner som endrer på inputs channelene inne i funksjonen dette gjør at koden blir litt mer tungvin å lese. 
+Funksjonene på innsiden er ofte godt skrevet og det er ofte enkelt å skjønne hva funksjonen gjør når man leser på innmaten til funksjonen.
+Informasjonen flyter som oftest fra en module til neste som gjør det nokså lett å følge med på informasjonsflyten.
+
+a66a5e3d
+
+
