@@ -51,3 +51,9 @@ så det er mer modulerbart.
 7 Tror jeg måtte brukt litt tid på å sette meg inn i koden hvis jeg skulle lagt til flere features for eksempel. Klarer ikke så lett å se Main hvor jeg skal gå for å finne det jeg trenger
 
 
+39CC8CA4:
+7
+1 Glemt å ta vekk kommentarer fra arbeidsprosessen. Burde lagt til andre kommentarer.
+2 syncer ihvertfall, burde hatt et annet navn.
+3 spesielt i syncer, kunne mye blitt lagt inn i funksjoner istedenfor rå kode i funksjonen. ville gjort det lettere å se hva som skjer i de forskjellige cases-ene, ettersom- 
+funksjonsnavnene kunne forklart logikken i case-ene.
